@@ -2,7 +2,7 @@
 #define RX433_pin 3
 #define TX315_pin 6
 #define TX433_pin 4
-#define TX433_pin_en 5
+#define RX315_pin_en 5
 
 #include <RCSwitch.h>
 
@@ -61,15 +61,17 @@ void parsing() {
   }
 }
 void setup() {
+  pinMode(RX315_pin_en, OUTPUT);
+  digitalWrite(RX315_pin_en, LOW);
   Serial.begin(57600);
   TX315.enableTransmit(TX315_pin);
   TX433.enableTransmit(TX433_pin);
   Serial.println("Started RF_SW");
   Serial.println("Format cmd: [Type_RC]+[BinCode_RC]+[Protocol_RC]+[PulseLength_RC](+[RepeatTX])\nType_RC = 315 or 433\nBinCode_RC - received binary code\nProtocol_RC - protocol number of received code\nPulseLength_RC - length of received code\nRepeatTX - optional argument, the number of times to resubmit the code.\nUsing: send the received command for repeat code or send the command 'l315' to switch to listening mode 315 MHz, for 433 MHz - 'l433'.");
-  RX_RC.enableReceive(0);  // Receiver on interrupt 0 => that is pin #2
-  Serial.println("Listing\t315MHz");
+  RX_RC.enableReceive(1);  // Receiver on interrupt 0 => that is pin #2
+  Serial.println("Listing 433MHz");
 }
-boolean FrSet315_or_433 = true;
+boolean FrSet315_or_433 = false;
 void loop() {
   parsing();       // функция парсинга
   if (recievedFlag) { // если получены данные
@@ -107,16 +109,18 @@ void loop() {
       }
     }
     else if (Type_RC == "l315") { //listing 315
+      digitalWrite(RX315_pin_en, HIGH);
       RX_RC.disableReceive();
       RX_RC.enableReceive(0);
       FrSet315_or_433 = true;
-      Serial.println("Listing\t315MHz");
+      Serial.println("Listing 315MHz");
     }
     else if (Type_RC == "l433") { //listing 433
+      digitalWrite(RX315_pin_en, LOW);
       RX_RC.disableReceive();
       RX_RC.enableReceive(1);
       FrSet315_or_433 = false;
-      Serial.println("Listing\t433MHz");
+      Serial.println("Listing 433MHz");
     } else {
       Serial.print("Err. index = ");
       Serial.print(index);
