@@ -19,7 +19,7 @@ Using: send the received command for repeat code or send the command 'l315' to s
 Тестирование.    
 <details><summary>Прием кода пульта 433MHz, копирование его и управление радиореле 2201-30A, эмулируя пульт с помощью RF_SW</summary>  
 
-![Тест](https://github.com/AlexanderChad/RF_SW/blob/main/Screenshot_terminal_0.jpg)  
+![Тест](https://user-images.githubusercontent.com/55314805/189283013-d1a23089-1734-49f5-ad1b-5d065350018b.jpg)
 </details>
  
 <details><summary>Видео с демонстрацией работы.</summary>  
