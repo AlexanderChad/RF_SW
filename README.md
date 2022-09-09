@@ -16,6 +16,16 @@ RepeatTX - optional argument, the number of times to resubmit the code.
 Using: send the received command for repeat code or send the command 'l315' to switch to listening mode 315 MHz, for 433 MHz - 'l433'.
 ```
 
-Тестирование.  
-Прием кода пульта 433MHz, копирование его и управление радиореле 2201-30A, эмулируя пульт с помощью RF_SW:  
+Тестирование.    
+<details><summary>Прием кода пульта 433MHz, копирование его и управление радиореле 2201-30A, эмулируя пульт с помощью RF_SW</summary>  
+
 ![Тест](https://github.com/AlexanderChad/RF_SW/blob/main/Screenshot_terminal_0.jpg)  
+</details>
+ 
+<details><summary>Видео с демонстрацией работы.</summary>  
+
+
+https://user-images.githubusercontent.com/55314805/189281198-2b6f32af-1966-4131-bc19-83414e48bc60.mp4
+
+
+</details>
